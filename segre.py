@@ -59,6 +59,7 @@ y2 = Symbol('y2')
 y3 = Symbol('y3')
 y4 = Symbol('y4')
 y5 = Symbol('y5')
+
 z1 = Symbol('z1')
 z2 = Symbol('z2')
 z3 = Symbol('z3')
@@ -72,12 +73,21 @@ f3 = Symbol('f3')
 f4 = Symbol('f4')
 f5 = Symbol('f5')
 
+#A is from \Phi:
 A = [0]*4
 
-A[0] = [[0,0,0,0,0],[0,0,-f0,-2*f1/5,0],[0,f0,0,-f2/10,0],[0,2*f1/5,f2/10,0,1],[0,0,0,-1,0]]
-A[1] = [[0,0,0,1,0],[0,0,-3*f1/5,-3*f2/5,0],[0,3*f1/5,0,-3*f3/10,-1],[-1,3*f2/5,3*f3/10,0,0],[0,0,1,0,0]]
-A[2] = [[0,0,-1,0,0],[0,0,-3*f2/10,-3*f3/5,1],[1,3*f2/10,0,-3*f4/5,0],[0,3*f3/5,3*f4/5,0,0],[0,-1,0,0,0]]
-A[3] = [[0,1,0,0,0],[-1,0,-f3/10,-2*f4/5,0],[0,f3/10,0,-f5,0],[0,2*f4/5,f5,0,0],[0,0,0,0,0]]
+A[0] = [[0,0,0,0,0],[0,0,-f0,0,0],[0,f0,0,0,0],[0,0,0,0,1],[0,0,0,-1,0]]
+A[1] = [[0,0,0,1,0],[0,0,-f1,-f2,0],[0,f1,0,0,-1],[-1,f2,0,0,0],[0,0,1,0,0]]
+A[2] = [[0,0,-1,0,0],[0,0,0,-f3,1],[1,0,0,-f4,0],[0,f3,f4,0,0],[0,-1,0,0,0]]
+A[3] = [[0,1,0,0,0],[-1,0,0,0,0],[0,0,0,-f5,0],[0,0,f5,0,0],[0,0,0,0,0]]
+
+#A_prime is from \Phi', i.e. integer-matrix version:
+A_prime = [0]*4
+
+A_prime[0] = [[0,0,0,0,0],[0,0,-f0,-2*f1/5,0],[0,f0,0,-f2/10,0],[0,2*f1/5,f2/10,0,1],[0,0,0,-1,0]]
+A_prime[1] = [[0,0,0,1,0],[0,0,-3*f1/5,-3*f2/5,0],[0,3*f1/5,0,-3*f3/10,-1],[-1,3*f2/5,3*f3/10,0,0],[0,0,1,0,0]]
+A_prime[2] = [[0,0,-1,0,0],[0,0,-3*f2/10,-3*f3/5,1],[1,3*f2/10,0,-3*f4/5,0],[0,3*f3/5,3*f4/5,0,0],[0,-1,0,0,0]]
+A_prime[3] = [[0,1,0,0,0],[-1,0,-f3/10,-2*f4/5,0],[0,f3/10,0,-f5,0],[0,2*f4/5,f5,0,0],[0,0,0,0,0]]
 
 y = [[y1],[y2],[y3],[y4],[y5]]
 z = [z1,z2,z3,z4,z5]
@@ -95,7 +105,10 @@ segre_matrix.append(z)
 
 print(segre_matrix)
 F = factor(determinant(segre_matrix))
+print("Bilinear factor x Segre cubic:")
 print(F)
+
+
 
 mat = [[0,y4,-y3,y2,z1],[-y3,0,y5,-y1,z2],[y2,-y5,y1,y4,z3],[y5,-y1,0,-y3,z4],[-y4,y3,-y2,0,z5]]
 poly = determinant(mat)
@@ -109,10 +122,24 @@ def segre_partials(a,b,c,d,e):
 
     return (2*a*d - b**2 - c*e, -2*a*b + c*d + e**2, -a*e + b*d - 3*c**2, a**2 + b*c + 2*d*e, -a*c + 2*b*e + d**2)
 
-zeta = Symbol('zeta')
+t1 = Symbol('t1')
+t2 = Symbol('t2')
 
-num = segre_cubic(-1-zeta**3, zeta+zeta**2, 0, zeta+zeta**2, zeta**3+1)
+f0 = 1
+f5 = -1
+
+num = segre_cubic(-2*f0*(t1**2+t2**2),2*f0**2*(t1**4+t2**4),3*f0*f5,-2*f0*f5*(t1+t2),2*f0*(t1**3+t2**3))
 print(factor(num))
+
+partials = segre_partials(-2*f0*(t1**2+t2**2),2*f0**2*(t1**4+t2**4),3*f0*f5,-2*f0*f5*(t1+t2),2*f0*(t1**3+t2**3))
+print(factor(partials))
+
+print('Using basis of ring to get trace-free basis - as per Seok Hyeong email')
+num = segre_cubic(f0*f5*(t1**3+t2**3),-f5*(t1+t2),f5,f0*(t1**4+t2**4),-f0*f5*(t1**2+t2**2))
+print(factor(num))
+
+partials = segre_partials(f0*f5*(t1**3+t2**3),-f5*(t1+t2),f5,f0*(t1**4+t2**4),-f0*f5*(t1**2+t2**2))
+print(factor(partials))
 
 a1 = (-1 + math.sqrt(5))/2
 a2 = (1 + math.sqrt(5))/2

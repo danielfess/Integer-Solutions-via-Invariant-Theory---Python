@@ -20,3 +20,13 @@ e = [d]
 print(e)
 
 print(tuple())
+
+test_dict = dict()
+test_dict['apple'] = 'fruit'
+test_dict['banana'] = 'fruit'
+test_dict['carrot'] = 'vegetable'
+print(test_dict)
+print(test_dict.items())
+print(type(test_dict.items()))
+for entry in test_dict.items():
+	print(entry)

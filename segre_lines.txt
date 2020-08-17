@@ -1,0 +1,19 @@
+#Polynomials satisfied by a line on the segre cubic
+#x,y are points on the line
+#pij are plucker coordinates
+#To find which lines lie on the segre cubic, we need to find for which pij there exist x,y solving these equations.
+
+f0*f2*y2**3 + f0*f3*y2**2*y3 + f0*f4*y2*y3**2 - f0*f5*y2*y3*y4 + f0*f5*y3**3 - f0*y1*y2**2 + f1*f3*y2**2*y4 + f1*f4*y2*y3*y4 + f1*f5*y3**2*y4 - f1*y2**2*y5 + f2*f4*y2*y4**2 + f2*f5*y3*y4**2 - f2*y1*y2*y4 + f3*f5*y4**3 - f3*y2*y4*y5 - f4*y1*y4**2 - f5*y4**2*y5 + y1**2*y4 - y1*y3*y5 + y2*y5**2
+3*f0*f2*x2*y2**2 + 2*f0*f3*x2*y2*y3 + f0*f3*x3*y2**2 + f0*f4*x2*y3**2 + 2*f0*f4*x3*y2*y3 - f0*f5*x2*y3*y4 - f0*f5*x3*y2*y4 + 3*f0*f5*x3*y3**2 - f0*f5*x4*y2*y3 - f0*x1*y2**2 - 2*f0*x2*y1*y2 + 2*f1*f3*x2*y2*y4 + f1*f3*x4*y2**2 + f1*f4*x2*y3*y4 + f1*f4*x3*y2*y4 + f1*f4*x4*y2*y3 + 2*f1*f5*x3*y3*y4 + f1*f5*x4*y3**2 - 2*f1*x2*y2*y5 - f1*x5*y2**2 + f2*f4*x2*y4**2 + 2*f2*f4*x4*y2*y4 + f2*f5*x3*y4**2 + 2*f2*f5*x4*y3*y4 - f2*x1*y2*y4 - f2*x2*y1*y4 - f2*x4*y1*y2 + 3*f3*f5*x4*y4**2 - f3*x2*y4*y5 - f3*x4*y2*y5 - f3*x5*y2*y4 - f4*x1*y4**2 - 2*f4*x4*y1*y4 - 2*f5*x4*y4*y5 - f5*x5*y4**2 + 2*x1*y1*y4 - x1*y3*y5 + x2*y5**2 - x3*y1*y5 + x4*y1**2 - x5*y1*y3 + 2*x5*y2*y5
+3*f0*f2*x2**2*y2 + f0*f3*x2**2*y3 + 2*f0*f3*x2*x3*y2 + 2*f0*f4*x2*x3*y3 + f0*f4*x3**2*y2 - f0*f5*x2*x3*y4 - f0*f5*x2*x4*y3 + 3*f0*f5*x3**2*y3 - f0*f5*x3*x4*y2 - 2*f0*x1*x2*y2 - f0*x2**2*y1 + f1*f3*x2**2*y4 + 2*f1*f3*x2*x4*y2 + f1*f4*x2*x3*y4 + f1*f4*x2*x4*y3 + f1*f4*x3*x4*y2 + f1*f5*x3**2*y4 + 2*f1*f5*x3*x4*y3 - f1*x2**2*y5 - 2*f1*x2*x5*y2 + 2*f2*f4*x2*x4*y4 + f2*f4*x4**2*y2 + 2*f2*f5*x3*x4*y4 + f2*f5*x4**2*y3 - f2*x1*x2*y4 - f2*x1*x4*y2 - f2*x2*x4*y1 + 3*f3*f5*x4**2*y4 - f3*x2*x4*y5 - f3*x2*x5*y4 - f3*x4*x5*y2 - 2*f4*x1*x4*y4 - f4*x4**2*y1 - f5*x4**2*y5 - 2*f5*x4*x5*y4 + x1**2*y4 - x1*x3*y5 + 2*x1*x4*y1 - x1*x5*y3 + 2*x2*x5*y5 - x3*x5*y1 + x5**2*y2
+f0*f2*x2**3 + f0*f3*x2**2*x3 + f0*f4*x2*x3**2 - f0*f5*x2*x3*x4 + f0*f5*x3**3 - f0*x1*x2**2 + f1*f3*x2**2*x4 + f1*f4*x2*x3*x4 + f1*f5*x3**2*x4 - f1*x2**2*x5 + f2*f4*x2*x4**2 + f2*f5*x3*x4**2 - f2*x1*x2*x4 + f3*f5*x4**3 - f3*x2*x4*x5 - f4*x1*x4**2 - f5*x4**2*x5 + x1**2*x4 - x1*x3*x5 + x2*x5**2
+p12 - x1*y2 + x2*y1
+p13 - x1*y3 + x3*y1
+p14 - x1*y4 + x4*y1
+p15 - x1*y5 + x5*y1
+p23 - x2*y3 + x3*y2
+p24 - x2*y4 + x4*y2
+p25 - x2*y5 + x5*y2
+p34 - x3*y4 + x4*y3
+p35 - x3*y5 + x5*y3
+p45 - x4*y5 + x5*y4

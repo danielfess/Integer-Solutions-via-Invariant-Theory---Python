@@ -4,6 +4,8 @@
 from sympy import *
 import time
 import itertools
+import os
+from os import path
 
 upper = [(1,2),(1,3),(1,4),(2,3),(2,4),(2,5),(3,4),(3,5),(4,5)]
 upper_all = [(1,2),(1,3),(1,4),(1,5),(2,3),(2,4),(2,5),(3,4),(3,5),(4,5)]
@@ -381,16 +383,11 @@ print(determinant([[1,1,1],[0,1,3],[0,0,4]]))
 #indices(4,4,1)
 
 f0 = Symbol('f0')
-#f1 = Symbol('f1')
-#f2 = Symbol('f2')
-#f3 = Symbol('f3')
-#f4 = Symbol('f4')
+f1 = Symbol('f1')
+f2 = Symbol('f2')
+f3 = Symbol('f3')
+f4 = Symbol('f4')
 f5 = Symbol('f5')
-
-f1 = 0
-f2 = 0
-f3 = 0
-f4 = 0
 
 
 A1 = [[0,0,0,0,0],[0,0,-f0,-2*f1/5,0],[0,f0,0,-f2/10,0],[0,2*f1/5,f2/10,0,1],[0,0,0,-1,0]]
@@ -505,17 +502,60 @@ print(sgn)
 
 start = time.time()
 
-coefficients = []
+coefficients = dict()
 
-for i in range(5):
-    for j in range(5):
-        for k in range(5):
-            coeff = special_Dijk(A1,A2,A3,A4,i+1,j+1,k+1)
-            print(i+1,j+1,k+1)
-            coefficients.append((i+1,j+1,k+1,factor(expand(coeff))))
+filename = 'mult_coeffs.txt'
+indices_done = []
 
-for entry in coefficients:
-    print(entry)
+if path.exists(filename) and os.stat(filename).st_size != 0:
+	with open(filename, 'r') as f:
+		line = f.readline()
+		while line:
+			if line.startswith('('):
+				indices_done.append(line[:9])
+			line = f.readline()
+
+print(indices_done)
+print(len(indices_done))
+
+with open(filename, 'a') as f:
+	if os.stat(filename).st_size == 0:
+		f.write('#(i,j,k), D_{i,j}^k\n')
+	for i in range(5):
+		for j in range(5):
+		    for k in range(5):
+		        if str((i+1,j+1,k+1)) not in indices_done:
+		            print(i+1,j+1,k+1)
+		            coeff = Dijk(A1,A2,A3,A4,i+1,j+1,k+1)
+		            coefficients[(i+1,j+1,k+1)] = factor(expand(coeff))
+		            f.write('{} {}\n'.format((i+1,j+1,k+1),coefficients[(i+1,j+1,k+1)]))
+		            f.flush()
+
+for entry in coefficients.items():
+	print(entry)
+
+key = [(1,2,2),(2,1,1),(3,4,4),(4,3,3),(5,4,4)]
+mult_coeffs = dict()
+
+#for i in range(5):
+#	for j in range(5):
+#		for k in range(5):
+#			if i == j:
+#				if i == k:
+#					mult_coeffs[(i+1,j+1,k+1)] = coefficients[(i+1,j+1,k+1)] - 2*coefficients[key[i]]
+#				else:
+#					mult_coeffs[(i+1,j+1,k+1)] = coefficients[(i+1,j+1,k+1)]
+#			else:
+#				if i == k:
+#					mult_coeffs[(i+1,j+1,k+1)] = coefficients[(i+1,j+1,k+1)] - coefficients[key[j]]
+#				elif j == k:
+#					mult_coeffs[(i+1,j+1,k+1)] = coefficients[(i+1,j+1,k+1)] - coefficients[key[i]]
+#				else:
+#					mult_coeffs[(i+1,j+1,k+1)] = coefficients[(i+1,j+1,k+1)]
+
+for entry in mult_coeffs.items():
+	print(entry)
+
 
 end = time.time()
 print('Total time:', (end - start)/60)

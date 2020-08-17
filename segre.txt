@@ -1,0 +1,2 @@
+#Segre cubic for \Phi(f) [not \Phi'(f)]
+f_0 f_2 y_2^3 + f_0 f_3 y_2^2 y_3 + f_0 f_4 y_2 y_3^2 - f_0 f_5 y_2 y_3 y_4 + f_0 f_5 y_3^3 - f_0 y_1 y_2^2 + f_1 f_3 y_2^2 y_4 + f_1 f_4 y_2 y_3 y_4 + f_1 f_5 y_3^2 y_4 - f_1 y_2^2 y_5 + f_2 f_4 y_2 y_4^2 + f_2 f_5 y_3 y_4^2 - f_2 y_1 y_2 y_4 + f_3 f_5 y_4^3 - f_3 y_2 y_4 y_5 - f_4 y_1 y_4^2 - f_5 y_4^2 y_5 + y_1^2 y_4 - y_1 y_3 y_5 + y_2 y_5^2
