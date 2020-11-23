@@ -13,10 +13,13 @@ f3 = Symbol('f3')
 f4 = Symbol('f4')
 f5 = Symbol('f5')
 
+g2 = 0
+g3 = 0
+
 g0 = Symbol('g0')
 g1 = Symbol('g1')
-g2 = Symbol('g2')
-g3 = Symbol('g3')
+#g2 = Symbol('g2')
+#g3 = Symbol('g3')
 g4 = Symbol('g4')
 g5 = Symbol('g5')
 
@@ -202,6 +205,7 @@ for i in range(6):
 	for j in range(6):
 		basis_traces[i] += matrices[i][j][j]
 
+print('Traces:')
 for i in range(6):
 	print(i,basis_traces[i])
 

@@ -2,11 +2,15 @@ from sympy import *
 import os
 
 f0 = Symbol('f0')
-f1 = Symbol('f1')
-f2 = Symbol('f2')
-f3 = Symbol('f3')
+#f1 = Symbol('f1')
+#f2 = Symbol('f2')
+#f3 = Symbol('f3')
 f4 = Symbol('f4')
 f5 = Symbol('f5')
+
+f1 = 0
+f2 = 0
+f3 = 0
 
 s1 = Symbol('s1')
 s2 = Symbol('s2')
@@ -108,9 +112,15 @@ s = [s1,s2,s3,s4,s5]
 F = det_lin_combo(s)
 print(expand(F))
 
+
 s0 = [s1,s2,s3,0,0]
 F0 = det_lin_combo(s0)
 print(expand(F0))
+
+print('On special plane')
+t = [0,s3,0,-s5,-s1]
+F1 = det_lin_combo(t)
+print(expand(F1))
 
 N = [[n11,n12,n13,n14,n15],[n21,n22,n23,n24,n25],[n31,n32,n33,n34,n35]]
 sN = matrix_mult([[s1,s2,s3]],N)
